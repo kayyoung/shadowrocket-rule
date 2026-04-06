@@ -1,4 +1,4 @@
-# Shadowrocket: 修正版 (修复国内网站误代理问题)
+# Shadowrocket: 修正版 (修复 GEOIP no-resolve 错误)
 # Update: 2026-04-06
 
 [General]
@@ -248,10 +248,10 @@ DOMAIN-SUFFIX,whoer.net,PROXY
 DOMAIN-SUFFIX,ipify.org,PROXY
 
 # =========================================================
-# 6) 兜底规则 (顺序决定生死)
+# 6) 兜底规则 (关键修正：GEOIP 去掉 no-resolve)
 # =========================================================
-# 优先匹配国内 IP
-GEOIP,CN,DIRECT,no-resolve
+# 优先匹配国内 IP (必须去掉 no-resolve，否则规则失效)
+GEOIP,CN,DIRECT
 # 其余未匹配的，全部代理
 FINAL,PROXY
 
