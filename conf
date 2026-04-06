@@ -221,6 +221,7 @@ DOMAIN-SUFFIX,ai.google.dev,PROXY
 DOMAIN-SUFFIX,mediapipe.dev,PROXY
 DOMAIN-SUFFIX,kaggle.com,PROXY
 DOMAIN-SUFFIX,kaggle.net,PROXY
+DOMAIN-SUFFIX,adservice.google.com,PROXY
 
 # =========================================================
 # 6) OpenAI / ChatGPT
