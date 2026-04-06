@@ -1,5 +1,5 @@
-# Shadowrocket: 修正版 (修复 GEOIP no-resolve 错误)
-# Update: 2026-04-06
+# Shadowrocket: 最终定稿版
+# Update: 2026-04-06 | 纯规则配置，不含节点，需自备代理
 
 [General]
 bypass-system = true
@@ -18,19 +18,16 @@ private-ip-answer = true
 
 [Rule]
 # =========================================================
-# 0) 测试工具 & 必须直连的国内基础
-# =========================================================
-DOMAIN-SUFFIX,skk.moe,DIRECT
-DOMAIN-SUFFIX,ipip.net,DIRECT
-DOMAIN-SUFFIX,ip.cn,DIRECT
-
-# =========================================================
-# 1) 广告拦截 (精简有效版)
+# 1) 广告拦截
 # =========================================================
 DOMAIN-SUFFIX,ad.xiaomi.com,REJECT
+DOMAIN-SUFFIX,ad.intl.xiaomi.com,REJECT
+DOMAIN-SUFFIX,sdkconfig.ad.xiaomi.com,REJECT
 DOMAIN-SUFFIX,ad.cmvideo.cn,REJECT
 DOMAIN-SUFFIX,cpro.baidu.com,REJECT
 DOMAIN-SUFFIX,pos.baidu.com,REJECT
+DOMAIN-SUFFIX,afd.baidu.com,REJECT
+DOMAIN-SUFFIX,als.baidu.com,REJECT
 DOMAIN-SUFFIX,ad.qq.com,REJECT
 DOMAIN-SUFFIX,livep.l.qq.com,REJECT
 DOMAIN-SUFFIX,tajs.qq.com,REJECT
@@ -39,17 +36,31 @@ DOMAIN-SUFFIX,btrace.qq.com,REJECT
 DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
 DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
 DOMAIN-SUFFIX,adsmind.gdtimg.com,REJECT
+DOMAIN-SUFFIX,ad.weixin.qq.com,REJECT
 DOMAIN-KEYWORD,admarvel,REJECT
 DOMAIN-KEYWORD,admaster,REJECT
+DOMAIN-KEYWORD,adsage,REJECT
+DOMAIN-KEYWORD,adsmogo,REJECT
+DOMAIN-KEYWORD,domob,REJECT
 DOMAIN-SUFFIX,doubleclick.net,REJECT
 DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,admob.com,REJECT
+DOMAIN-SUFFIX,ads-twitter.com,REJECT
 DOMAIN-SUFFIX,app-measurement.com,REJECT
 DOMAIN-SUFFIX,scorecardresearch.com,REJECT
+DOMAIN-SUFFIX,quantserve.com,REJECT
+DOMAIN-SUFFIX,adjust.com,REJECT
+DOMAIN-SUFFIX,appsflyer.com,REJECT
+DOMAIN-SUFFIX,branch.io,REJECT
 DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,umengcloud.com,REJECT
 DOMAIN-SUFFIX,cnzz.com,REJECT
+DOMAIN-SUFFIX,miaozhen.com,REJECT
+DOMAIN-SUFFIX,adsame.com,REJECT
 
 # =========================================================
-# 2) 局域网 / 内网 (最高优先级)
+# 2) 局域网 / 内网 / 本地发现
 # =========================================================
 DOMAIN-SUFFIX,local,DIRECT
 DOMAIN-SUFFIX,lan,DIRECT
@@ -65,7 +76,7 @@ IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
 IP-CIDR6,FE80::/10,DIRECT,no-resolve
 
 # =========================================================
-# 3) Apple 服务 (直连)
+# 3) Apple 基础服务（精确直连）
 # =========================================================
 DOMAIN,captive.apple.com,DIRECT
 DOMAIN,time.apple.com,DIRECT
@@ -82,7 +93,7 @@ DOMAIN-SUFFIX,mzstatic.com,DIRECT
 DOMAIN-SUFFIX,apple-dns.net,DIRECT
 
 # =========================================================
-# 4) 银行 / 支付 / 微信 / 腾讯系 (防 VPN 警告 - 全直连)
+# 4) 银行 / 支付 / 微信 / 政务（防 VPN 警告）
 # =========================================================
 DOMAIN-SUFFIX,wechat.com,DIRECT
 DOMAIN-SUFFIX,weixin.qq.com,DIRECT
@@ -96,10 +107,10 @@ DOMAIN-SUFFIX,tencent-cloud.net,DIRECT
 DOMAIN-SUFFIX,tenpay.com,DIRECT
 DOMAIN-SUFFIX,alipay.com,DIRECT
 DOMAIN-SUFFIX,alipayobjects.com,DIRECT
+DOMAIN-SUFFIX,alipay-eco.com,DIRECT
 DOMAIN-SUFFIX,unionpay.com,DIRECT
 DOMAIN-SUFFIX,95516.com,DIRECT
 DOMAIN-SUFFIX,unionpaysecure.com,DIRECT
-# 银行精确后缀
 DOMAIN-SUFFIX,icbc.com.cn,DIRECT
 DOMAIN-SUFFIX,icbc.cn,DIRECT
 DOMAIN-SUFFIX,ccb.com,DIRECT
@@ -121,12 +132,13 @@ DOMAIN-SUFFIX,pingan.cn,DIRECT
 DOMAIN-SUFFIX,pingan.com.cn,DIRECT
 DOMAIN-SUFFIX,cmbchina.com,DIRECT
 DOMAIN-SUFFIX,cmbchina.cn,DIRECT
-# 政务/基础设施
 DOMAIN-SUFFIX,cfca.com.cn,DIRECT
 DOMAIN-SUFFIX,oscca.gov.cn,DIRECT
 DOMAIN-SUFFIX,cnca.cn,DIRECT
 DOMAIN-SUFFIX,geotrust.com,DIRECT
 DOMAIN-SUFFIX,digicert.com,DIRECT
+DOMAIN-SUFFIX,globalsign.com,DIRECT
+DOMAIN-SUFFIX,entrust.net,DIRECT
 DOMAIN-SUFFIX,letsencrypt.org,DIRECT
 DOMAIN-SUFFIX,12306.cn,DIRECT
 DOMAIN-SUFFIX,gov.cn,DIRECT
@@ -134,50 +146,67 @@ DOMAIN-SUFFIX,coze.cn,DIRECT
 DOMAIN-SUFFIX,feishu.cn,DIRECT
 
 # =========================================================
-# 5) 核心业务分流 (AI / 海外应用 / 视频)
+# 5) Claude / Anthropic
 # =========================================================
-# Claude
 DOMAIN-SUFFIX,claude.ai,PROXY
 DOMAIN-SUFFIX,anthropic.com,PROXY
 DOMAIN-SUFFIX,anthropic.dev,PROXY
 DOMAIN-SUFFIX,claudeusercontent.com,PROXY
 DOMAIN-SUFFIX,statsig.com,PROXY
 DOMAIN-SUFFIX,launchdarkly.com,PROXY
+DOMAIN-SUFFIX,intercomcdn.com,PROXY
 DOMAIN-SUFFIX,intercom.io,PROXY
 DOMAIN-SUFFIX,sentry.io,PROXY
+DOMAIN-SUFFIX,sentry-cdn.com,PROXY
+DOMAIN-SUFFIX,segment.io,PROXY
 DOMAIN-SUFFIX,challenges.cloudflare.com,PROXY
 DOMAIN-SUFFIX,turnstile.cloudflare.com,PROXY
 
-# Google / AI
+# =========================================================
+# 6) Google OAuth & Google AI
+# =========================================================
 DOMAIN,accounts.google.com,PROXY
 DOMAIN,oauth2.googleapis.com,PROXY
 DOMAIN,token.googleapis.com,PROXY
+DOMAIN,oauthaccountmanager.googleapis.com,PROXY
 DOMAIN,www.googleapis.com,PROXY
 DOMAIN,content.googleapis.com,PROXY
 DOMAIN,clients4.google.com,PROXY
 DOMAIN,clients6.google.com,PROXY
 DOMAIN,ssl.gstatic.com,PROXY
+DOMAIN,fonts.gstatic.com,PROXY
 DOMAIN-SUFFIX,google.com,PROXY
 DOMAIN-SUFFIX,googleapis.com,PROXY
 DOMAIN-SUFFIX,gstatic.com,PROXY
 DOMAIN-SUFFIX,googleusercontent.com,PROXY
 DOMAIN-SUFFIX,gvt1.com,PROXY
+DOMAIN-SUFFIX,gvt2.com,PROXY
+DOMAIN-SUFFIX,gvt3.com,PROXY
 DOMAIN-SUFFIX,1e100.net,PROXY
 DOMAIN,gemini.google.com,PROXY
 DOMAIN,aistudio.google.com,PROXY
 DOMAIN,makersuite.google.com,PROXY
 DOMAIN-SUFFIX,ai.google.dev,PROXY
+DOMAIN-SUFFIX,mediapipe.dev,PROXY
 DOMAIN-SUFFIX,kaggle.com,PROXY
+DOMAIN-SUFFIX,kaggle.net,PROXY
+DOMAIN-SUFFIX,adservice.google.com,PROXY
 
-# OpenAI
+# =========================================================
+# 7) OpenAI / ChatGPT
+# =========================================================
 DOMAIN-SUFFIX,openai.com,PROXY
 DOMAIN-SUFFIX,chatgpt.com,PROXY
 DOMAIN-SUFFIX,oaistatic.com,PROXY
 DOMAIN-SUFFIX,oaiusercontent.com,PROXY
+DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
 DOMAIN-SUFFIX,ai.com,PROXY
 DOMAIN-SUFFIX,auth0.com,PROXY
+DOMAIN-SUFFIX,cdn.auth0.com,PROXY
 
-# TikTok / 字节海外
+# =========================================================
+# 8) 海外字节跳动（TikTok / CapCut / Lark）
+# =========================================================
 DOMAIN-SUFFIX,tiktok.com,PROXY
 DOMAIN-SUFFIX,tiktokv.com,PROXY
 DOMAIN-SUFFIX,tiktokcdn.com,PROXY
@@ -186,23 +215,41 @@ DOMAIN-SUFFIX,tiktokcdn-eu.com,PROXY
 DOMAIN-SUFFIX,tiktokrow-cdn.com,PROXY
 DOMAIN-SUFFIX,tiktokv.us,PROXY
 DOMAIN-SUFFIX,tiktokmusic.app,PROXY
+DOMAIN-SUFFIX,tiktokshopglobal.com,PROXY
 DOMAIN-SUFFIX,tiktokd.net,PROXY
 DOMAIN-SUFFIX,ibyteimg.com,PROXY
 DOMAIN-SUFFIX,ibytedtos.com,PROXY
 DOMAIN-SUFFIX,byteoversea.com,PROXY
 DOMAIN-SUFFIX,byteoversea.net,PROXY
 DOMAIN-SUFFIX,byteintlapi.com,PROXY
+DOMAIN-SUFFIX,bytegecko.com,PROXY
+DOMAIN-SUFFIX,bytegecko-i18n.com,PROXY
+DOMAIN-SUFFIX,sgpstatp.com,PROXY
+DOMAIN-SUFFIX,ipstatp.com,PROXY
 DOMAIN-SUFFIX,muscdn.com,PROXY
+DOMAIN-SUFFIX,musical.ly,PROXY
 DOMAIN-SUFFIX,capcut.com,PROXY
 DOMAIN-SUFFIX,capcutapi.com,PROXY
+DOMAIN-SUFFIX,capcut.net,PROXY
+DOMAIN-SUFFIX,capcutstatic.com,PROXY
+DOMAIN-SUFFIX,hypic.com,PROXY
+DOMAIN-SUFFIX,lemon8-app.com,PROXY
+DOMAIN-SUFFIX,lemon8cdn.com,PROXY
+DOMAIN-SUFFIX,lemon8-app.net,PROXY
 DOMAIN-SUFFIX,coze.com,PROXY
+DOMAIN-SUFFIX,ciciai.com,PROXY
 DOMAIN-SUFFIX,larkoffice.com,PROXY
 DOMAIN-SUFFIX,larksuite.com,PROXY
+DOMAIN-SUFFIX,byteplusapi.com,PROXY
+DOMAIN-SUFFIX,byteplus.com,PROXY
 DOMAIN,www.tiktok.com,PROXY
 DOMAIN,api.tiktok.com,PROXY
 DOMAIN,www.capcut.com,PROXY
+DOMAIN,api-h2.tiktokv.com,PROXY
 
-# Telegram
+# =========================================================
+# 9) Telegram
+# =========================================================
 DOMAIN-SUFFIX,t.me,PROXY
 DOMAIN-SUFFIX,telegram.org,PROXY
 DOMAIN-SUFFIX,telegra.ph,PROXY
@@ -214,8 +261,12 @@ IP-CIDR,91.108.16.0/22,PROXY,no-resolve
 IP-CIDR,91.108.56.0/22,PROXY,no-resolve
 IP-CIDR,149.154.160.0/20,PROXY,no-resolve
 IP-CIDR6,2001:67C:4E8::/48,PROXY,no-resolve
+IP-CIDR6,2001:B28:F23D::/48,PROXY,no-resolve
+IP-CIDR6,2001:B28:F23F::/48,PROXY,no-resolve
 
-# 海外常见 (CF / YT / X / GH)
+# =========================================================
+# 10) 常见海外服务 & Cloudflare
+# =========================================================
 DOMAIN-SUFFIX,youtube.com,PROXY
 DOMAIN-SUFFIX,youtu.be,PROXY
 DOMAIN-SUFFIX,ytimg.com,PROXY
@@ -229,18 +280,28 @@ DOMAIN-SUFFIX,githubassets.com,PROXY
 DOMAIN-SUFFIX,github.io,PROXY
 DOMAIN-SUFFIX,reddit.com,PROXY
 DOMAIN-SUFFIX,redd.it,PROXY
+DOMAIN-SUFFIX,redditmedia.com,PROXY
+DOMAIN-SUFFIX,redditstatic.com,PROXY
 DOMAIN-SUFFIX,discord.com,PROXY
 DOMAIN-SUFFIX,discord.gg,PROXY
 DOMAIN-SUFFIX,discordapp.com,PROXY
-# Cloudflare 域名代理 (去除 IP 段暴力代理，防误伤国内 CDN)
+DOMAIN-SUFFIX,discordapp.net,PROXY
 DOMAIN-SUFFIX,cloudflare.com,PROXY
 DOMAIN-SUFFIX,cloudflareinsights.com,PROXY
+DOMAIN-SUFFIX,cloudflarestorage.com,PROXY
 DOMAIN-SUFFIX,workers.dev,PROXY
 DOMAIN-SUFFIX,pages.dev,PROXY
 DOMAIN,www.cloudflare.com,PROXY
 DOMAIN,dash.cloudflare.com,PROXY
+IP-CIDR,104.16.0.0/13,PROXY,no-resolve
+IP-CIDR,104.24.0.0/14,PROXY,no-resolve
+IP-CIDR,172.64.0.0/13,PROXY,no-resolve
+IP-CIDR,131.0.72.0/22,PROXY,no-resolve
+IP-CIDR6,2606:4700::/32,PROXY,no-resolve
 
-# DNS 泄漏测试
+# =========================================================
+# 11) DNS 泄漏测试网站
+# =========================================================
 DOMAIN-SUFFIX,ipleak.net,PROXY
 DOMAIN-SUFFIX,dnsleaktest.com,PROXY
 DOMAIN-SUFFIX,browserleaks.com,PROXY
@@ -248,11 +309,9 @@ DOMAIN-SUFFIX,whoer.net,PROXY
 DOMAIN-SUFFIX,ipify.org,PROXY
 
 # =========================================================
-# 6) 兜底规则 (关键修正：GEOIP 去掉 no-resolve)
+# 12) 兜底规则
 # =========================================================
-# 优先匹配国内 IP (必须去掉 no-resolve，否则规则失效)
 GEOIP,CN,DIRECT
-# 其余未匹配的，全部代理
 FINAL,PROXY
 
 [Host]
