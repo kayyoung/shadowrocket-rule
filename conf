@@ -1,5 +1,5 @@
-# Shadowrocket: 最终定稿版
-# Update: 2026-04-06 | 纯规则配置，不含节点，需自备代理
+# Shadowrocket: 最终定稿版 v2.1
+# Update: 2026-04-10 | 纯规则配置，不含节点，需自备代理
 
 [General]
 bypass-system = true
@@ -24,6 +24,49 @@ stun-response-ipv6 = ::1
 # =========================================================
 # 1) 广告拦截
 # =========================================================
+# Google 广告
+DOMAIN-SUFFIX,adservice.google.com,REJECT
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,googleadservices.com,REJECT
+DOMAIN-SUFFIX,admob.com,REJECT
+DOMAIN-SUFFIX,ads.google.com,REJECT
+# 字节穿山甲 / Pangle
+DOMAIN-SUFFIX,pangolin.snssdk.com,REJECT
+DOMAIN-SUFFIX,ad.toutiao.com,REJECT
+DOMAIN-SUFFIX,log.snssdk.com,REJECT
+DOMAIN-SUFFIX,mssdk.toutiao.com,REJECT
+DOMAIN-SUFFIX,pangle.io,REJECT
+DOMAIN-SUFFIX,pangolin.byteoversea.com,REJECT
+DOMAIN-KEYWORD,pangle,REJECT
+# AppLovin
+DOMAIN-SUFFIX,applovin.com,REJECT
+DOMAIN-SUFFIX,applovin.net,REJECT
+# Unity Ads
+DOMAIN-SUFFIX,unityads.unity3d.com,REJECT
+DOMAIN-SUFFIX,ads.unity3d.com,REJECT
+DOMAIN-SUFFIX,auction.unityads.unity3d.com,REJECT
+DOMAIN-KEYWORD,unityads,REJECT
+# Mintegral / Mobvista（注意：mgtv.com 是芒果TV，不在此列）
+DOMAIN-SUFFIX,mintegral.com,REJECT
+DOMAIN-SUFFIX,mobvista.com,REJECT
+DOMAIN-KEYWORD,mintegral,REJECT
+# IronSource
+DOMAIN-SUFFIX,ironsrc.com,REJECT
+DOMAIN-SUFFIX,iron-source.com,REJECT
+DOMAIN-SUFFIX,supersonic.com,REJECT
+# 快手广告
+DOMAIN-SUFFIX,adkwai.com,REJECT
+DOMAIN-SUFFIX,ad.kuaishou.com,REJECT
+DOMAIN-SUFFIX,kuaishouzt.com,REJECT
+# Vungle
+DOMAIN-SUFFIX,vungle.com,REJECT
+# InMobi
+DOMAIN-SUFFIX,inmobi.com,REJECT
+# Criteo
+DOMAIN-SUFFIX,criteo.com,REJECT
+DOMAIN-SUFFIX,criteo.net,REJECT
+# 国内广告平台
 DOMAIN-SUFFIX,ad.xiaomi.com,REJECT
 DOMAIN-SUFFIX,ad.intl.xiaomi.com,REJECT
 DOMAIN-SUFFIX,sdkconfig.ad.xiaomi.com,REJECT
@@ -46,10 +89,7 @@ DOMAIN-KEYWORD,admaster,REJECT
 DOMAIN-KEYWORD,adsage,REJECT
 DOMAIN-KEYWORD,adsmogo,REJECT
 DOMAIN-KEYWORD,domob,REJECT
-DOMAIN-SUFFIX,doubleclick.net,REJECT
-DOMAIN-SUFFIX,googlesyndication.com,REJECT
-DOMAIN-SUFFIX,googleadservices.com,REJECT
-DOMAIN-SUFFIX,admob.com,REJECT
+# 通用追踪
 DOMAIN-SUFFIX,ads-twitter.com,REJECT
 DOMAIN-SUFFIX,app-measurement.com,REJECT
 DOMAIN-SUFFIX,scorecardresearch.com,REJECT
@@ -150,6 +190,74 @@ DOMAIN-SUFFIX,coze.cn,DIRECT
 DOMAIN-SUFFIX,feishu.cn,DIRECT
 
 # =========================================================
+# 4b) 国内主流 app（显式直连，减少 GEOIP 误判）
+# =========================================================
+# 百度
+DOMAIN-SUFFIX,baidu.com,DIRECT
+DOMAIN-SUFFIX,bdstatic.com,DIRECT
+DOMAIN-SUFFIX,baidubce.com,DIRECT
+DOMAIN-SUFFIX,baidustatic.com,DIRECT
+# 淘宝 / 天猫 / 阿里
+DOMAIN-SUFFIX,taobao.com,DIRECT
+DOMAIN-SUFFIX,tmall.com,DIRECT
+DOMAIN-SUFFIX,aliyun.com,DIRECT
+DOMAIN-SUFFIX,alicdn.com,DIRECT
+DOMAIN-SUFFIX,alibaba.com,DIRECT
+DOMAIN-SUFFIX,alibabacloud.com,DIRECT
+DOMAIN-SUFFIX,1688.com,DIRECT
+# 京东
+DOMAIN-SUFFIX,jd.com,DIRECT
+DOMAIN-SUFFIX,360buy.com,DIRECT
+DOMAIN-SUFFIX,jdcloud.com,DIRECT
+# B站
+DOMAIN-SUFFIX,bilibili.com,DIRECT
+DOMAIN-SUFFIX,bilivideo.com,DIRECT
+DOMAIN-SUFFIX,bilivideo.cn,DIRECT
+DOMAIN-SUFFIX,acgvideo.com,DIRECT
+DOMAIN-SUFFIX,hdslb.com,DIRECT
+# 网易
+DOMAIN-SUFFIX,163.com,DIRECT
+DOMAIN-SUFFIX,126.com,DIRECT
+DOMAIN-SUFFIX,netease.com,DIRECT
+# 抖音（国内版）
+DOMAIN-SUFFIX,douyin.com,DIRECT
+DOMAIN-SUFFIX,douyincdn.com,DIRECT
+DOMAIN-SUFFIX,douyinstatic.com,DIRECT
+DOMAIN-SUFFIX,amemv.com,DIRECT
+# 小红书
+DOMAIN-SUFFIX,xiaohongshu.com,DIRECT
+DOMAIN-SUFFIX,xhscdn.com,DIRECT
+# 美团 / 饿了么
+DOMAIN-SUFFIX,meituan.com,DIRECT
+DOMAIN-SUFFIX,meituan.net,DIRECT
+DOMAIN-SUFFIX,dianping.com,DIRECT
+DOMAIN-SUFFIX,eleme.cn,DIRECT
+# 滴滴
+DOMAIN-SUFFIX,didichuxing.com,DIRECT
+# 微博
+DOMAIN-SUFFIX,weibo.com,DIRECT
+DOMAIN-SUFFIX,weibo.cn,DIRECT
+DOMAIN-SUFFIX,sinaimg.cn,DIRECT
+DOMAIN-SUFFIX,sina.com.cn,DIRECT
+# 知乎
+DOMAIN-SUFFIX,zhihu.com,DIRECT
+# 芒果TV
+DOMAIN-SUFFIX,mgtv.com,DIRECT
+# 腾讯视频 / 优酷 / 爱奇艺
+DOMAIN-SUFFIX,v.qq.com,DIRECT
+DOMAIN-SUFFIX,youku.com,DIRECT
+DOMAIN-SUFFIX,iqiyi.com,DIRECT
+DOMAIN-SUFFIX,qiyi.com,DIRECT
+# 高德 / 百度地图
+DOMAIN-SUFFIX,amap.com,DIRECT
+DOMAIN-SUFFIX,autonavi.com,DIRECT
+# 国内 CDN
+DOMAIN-SUFFIX,qcloud.com,DIRECT
+DOMAIN-SUFFIX,tencentcos.cn,DIRECT
+DOMAIN-SUFFIX,dnspod.cn,DIRECT
+DOMAIN-SUFFIX,ucloud.cn,DIRECT
+
+# =========================================================
 # 5) Claude / Anthropic
 # =========================================================
 DOMAIN-SUFFIX,claude.ai,PROXY
@@ -194,7 +302,6 @@ DOMAIN-SUFFIX,ai.google.dev,PROXY
 DOMAIN-SUFFIX,mediapipe.dev,PROXY
 DOMAIN-SUFFIX,kaggle.com,PROXY
 DOMAIN-SUFFIX,kaggle.net,PROXY
-DOMAIN-SUFFIX,adservice.google.com,PROXY
 
 # =========================================================
 # 7) OpenAI / ChatGPT
@@ -207,6 +314,36 @@ DOMAIN-SUFFIX,openaiapi-site.azureedge.net,PROXY
 DOMAIN-SUFFIX,ai.com,PROXY
 DOMAIN-SUFFIX,auth0.com,PROXY
 DOMAIN-SUFFIX,cdn.auth0.com,PROXY
+
+# =========================================================
+# 7b) 其他海外 AI 服务
+# =========================================================
+DOMAIN-SUFFIX,perplexity.ai,PROXY
+DOMAIN-SUFFIX,perplexity.com,PROXY
+DOMAIN-SUFFIX,mistral.ai,PROXY
+DOMAIN-SUFFIX,mistral.com,PROXY
+DOMAIN-SUFFIX,groq.com,PROXY
+DOMAIN-SUFFIX,huggingface.co,PROXY
+DOMAIN-SUFFIX,huggingface.com,PROXY
+DOMAIN-SUFFIX,hf.co,PROXY
+DOMAIN-SUFFIX,replicate.com,PROXY
+DOMAIN-SUFFIX,replicate.delivery,PROXY
+DOMAIN-SUFFIX,poe.com,PROXY
+DOMAIN-SUFFIX,quora.com,PROXY
+DOMAIN-SUFFIX,x.ai,PROXY
+DOMAIN-SUFFIX,grok.com,PROXY
+DOMAIN-SUFFIX,together.ai,PROXY
+DOMAIN-SUFFIX,together.xyz,PROXY
+DOMAIN-SUFFIX,stability.ai,PROXY
+DOMAIN-SUFFIX,stabilityai.com,PROXY
+DOMAIN-SUFFIX,midjourney.com,PROXY
+DOMAIN-SUFFIX,runwayml.com,PROXY
+DOMAIN-SUFFIX,runway.com,PROXY
+DOMAIN-SUFFIX,elevenlabs.io,PROXY
+DOMAIN-SUFFIX,cursor.com,PROXY
+DOMAIN-SUFFIX,cursor.sh,PROXY
+DOMAIN-SUFFIX,codeium.com,PROXY
+DOMAIN-SUFFIX,deepseek.com,PROXY
 
 # =========================================================
 # 8) 海外字节跳动（TikTok / CapCut / Lark）
@@ -304,7 +441,7 @@ IP-CIDR,131.0.72.0/22,PROXY,no-resolve
 IP-CIDR6,2606:4700::/32,PROXY,no-resolve
 
 # =========================================================
-# 11) DNS 泄漏测试网站
+# 11) DNS 泄漏检测网站
 # =========================================================
 DOMAIN-SUFFIX,ipleak.net,PROXY
 DOMAIN-SUFFIX,dnsleaktest.com,PROXY
