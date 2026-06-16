@@ -1,5 +1,5 @@
-# Shadowrocket: 最终定稿版 v2.1
-# Update: 2026-04-10 | 纯规则配置，不含节点，需自备代理
+# Shadowrocket: 最终定稿版 v2.2
+# Update: 2026-06-15 | 纯规则配置，不含节点，需自备代理 | 精简冗余 DOMAIN 规则
 
 [General]
 bypass-system = true
@@ -277,16 +277,6 @@ DOMAIN-SUFFIX,turnstile.cloudflare.com,PROXY
 # =========================================================
 # 6) Google OAuth & Google AI
 # =========================================================
-DOMAIN,accounts.google.com,PROXY
-DOMAIN,oauth2.googleapis.com,PROXY
-DOMAIN,token.googleapis.com,PROXY
-DOMAIN,oauthaccountmanager.googleapis.com,PROXY
-DOMAIN,www.googleapis.com,PROXY
-DOMAIN,content.googleapis.com,PROXY
-DOMAIN,clients4.google.com,PROXY
-DOMAIN,clients6.google.com,PROXY
-DOMAIN,ssl.gstatic.com,PROXY
-DOMAIN,fonts.gstatic.com,PROXY
 DOMAIN-SUFFIX,google.com,PROXY
 DOMAIN-SUFFIX,googleapis.com,PROXY
 DOMAIN-SUFFIX,gstatic.com,PROXY
@@ -295,9 +285,6 @@ DOMAIN-SUFFIX,gvt1.com,PROXY
 DOMAIN-SUFFIX,gvt2.com,PROXY
 DOMAIN-SUFFIX,gvt3.com,PROXY
 DOMAIN-SUFFIX,1e100.net,PROXY
-DOMAIN,gemini.google.com,PROXY
-DOMAIN,aistudio.google.com,PROXY
-DOMAIN,makersuite.google.com,PROXY
 DOMAIN-SUFFIX,ai.google.dev,PROXY
 DOMAIN-SUFFIX,mediapipe.dev,PROXY
 DOMAIN-SUFFIX,kaggle.com,PROXY
@@ -383,10 +370,6 @@ DOMAIN-SUFFIX,larkoffice.com,PROXY
 DOMAIN-SUFFIX,larksuite.com,PROXY
 DOMAIN-SUFFIX,byteplusapi.com,PROXY
 DOMAIN-SUFFIX,byteplus.com,PROXY
-DOMAIN,www.tiktok.com,PROXY
-DOMAIN,api.tiktok.com,PROXY
-DOMAIN,www.capcut.com,PROXY
-DOMAIN,api-h2.tiktokv.com,PROXY
 
 # =========================================================
 # 9) Telegram
@@ -432,8 +415,6 @@ DOMAIN-SUFFIX,cloudflareinsights.com,PROXY
 DOMAIN-SUFFIX,cloudflarestorage.com,PROXY
 DOMAIN-SUFFIX,workers.dev,PROXY
 DOMAIN-SUFFIX,pages.dev,PROXY
-DOMAIN,www.cloudflare.com,PROXY
-DOMAIN,dash.cloudflare.com,PROXY
 IP-CIDR,104.16.0.0/13,PROXY,no-resolve
 IP-CIDR,104.24.0.0/14,PROXY,no-resolve
 IP-CIDR,172.64.0.0/13,PROXY,no-resolve
